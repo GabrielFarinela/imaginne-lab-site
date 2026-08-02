@@ -1,0 +1,9 @@
+{
+  "name": "imaginne-lab-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Marketing site for Imaginne Lab, a 3D printing studio.",
+  "scripts": {
+    "dev": "node scripts/dev-server.js 3000"
+  }
+}
