@@ -1,13 +1,9 @@
 (() => {
   const root = document.documentElement;
-  const stored = localStorage.getItem('imaginne-theme');
-  if (stored) root.setAttribute('data-theme', stored);
 
   const themeToggle = document.querySelector('.theme-toggle');
   themeToggle?.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    const next = current === 'dark' ? 'light' : 'dark';
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     localStorage.setItem('imaginne-theme', next);
   });
