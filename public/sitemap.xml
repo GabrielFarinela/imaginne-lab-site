@@ -3,22 +3,22 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://imaginne-lab-site.vercel.app/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://imaginne-lab-site.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://imaginne-lab-site.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://imaginne-lab-site.vercel.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imaginne-lab-site.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://imaginne-lab-site.vercel.app/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://imaginne-lab-site.vercel.app/"/>
   </url>
   <url>
-    <loc>https://imaginne-lab-site.vercel.app/en/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://imaginne-lab-site.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://imaginne-lab-site.vercel.app/en/"/>
+    <loc>https://imaginne-lab-site.vercel.app/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://imaginne-lab-site.vercel.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imaginne-lab-site.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://imaginne-lab-site.vercel.app/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://imaginne-lab-site.vercel.app/"/>
   </url>
   <url>
     <loc>https://imaginne-lab-site.vercel.app/es/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://imaginne-lab-site.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://imaginne-lab-site.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://imaginne-lab-site.vercel.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imaginne-lab-site.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://imaginne-lab-site.vercel.app/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://imaginne-lab-site.vercel.app/"/>
   </url>
