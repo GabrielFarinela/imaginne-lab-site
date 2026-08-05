@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://imaginne-lab-site.vercel.app/sitemap.xml
+Sitemap: https://www.imaginnelab.com/sitemap.xml
