@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script>(function(){var s=localStorage.getItem('imaginne-theme');document.documentElement.setAttribute('data-theme',s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));})();</script>
-<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){return;}if(sessionStorage.getItem('imaginne-transition')==='out'){document.documentElement.classList.add('incoming-transition');}else if(!sessionStorage.getItem('imaginne-intro-shown')){document.documentElement.classList.add('pending-intro');}})();</script>
+<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){return;}if(sessionStorage.getItem('imaginne-transition')==='out'){document.documentElement.classList.add('incoming-transition');}else{document.documentElement.classList.add('pending-intro');}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Imaginne Lab · Estudio de Impresión 3D</title>
 <meta name="description" content="Miniaturas, organización y regalos personalizados, impresos en 3D bajo pedido por Imaginne Lab.">
@@ -18,7 +18,7 @@
 <body>
 
 <div class="page-transition" id="page-transition" aria-hidden="true">
-  <span class="page-transition-text">Imaginne Lab<i class="pt-pen"></i></span>
+  <span class="page-transition-text">Imaginne Lab</span>
 </div>
 
 <header class="nav">

@@ -44,25 +44,6 @@ html.incoming-transition .page-transition-text { clip-path: inset(-50% -15% -50%
   to { clip-path: inset(-50% -15% -50% -5%); }
 }
 
-.pt-pen {
-  position: absolute;
-  top: 0.25em;
-  left: 0;
-  width: 0.35em;
-  height: 0.35em;
-  border-radius: 50%;
-  background: var(--amber);
-  opacity: 0;
-}
-.page-transition.is-writing .pt-pen {
-  animation: pt-pen-move 1.1s linear forwards;
-}
-@keyframes pt-pen-move {
-  0% { left: 0; opacity: 1; }
-  97% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .page-transition { display: none !important; }
 }

@@ -1,6 +1,5 @@
 (() => {
   const TRANSITION_KEY = 'imaginne-transition';
-  const INTRO_KEY = 'imaginne-intro-shown';
   const overlay = document.getElementById('page-transition');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!overlay || reduceMotion) {
@@ -12,7 +11,6 @@
 
   if (isHandoff) {
     sessionStorage.removeItem(TRANSITION_KEY);
-    sessionStorage.setItem(INTRO_KEY, '1');
     overlay.classList.add('is-visible');
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -22,7 +20,6 @@
     });
     setTimeout(() => overlay.classList.remove('is-visible', 'is-fading'), 500);
   } else if (document.documentElement.classList.contains('pending-intro')) {
-    sessionStorage.setItem(INTRO_KEY, '1');
     requestAnimationFrame(() => {
       overlay.classList.add('is-visible', 'is-writing');
     });
