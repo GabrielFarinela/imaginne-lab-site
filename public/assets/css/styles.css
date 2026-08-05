@@ -1,24 +1,67 @@
 @import url('../fonts/fonts.css');
 
 /* ---------------------------------------------------------
-   Smooth cross-page transitions (PT/EN/ES switch, internal nav)
-   Unsupported browsers fall back to a normal hard navigation.
+   Branded page transition (language switch, internal nav)
+   A cursive wordmark writes itself on, then dissolves to
+   reveal the destination page. See assets/js/transition.js.
 --------------------------------------------------------- */
-@view-transition {
-  navigation: auto;
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.page-transition.is-visible { visibility: visible; opacity: 1; }
+.page-transition.is-fading { transition: opacity 0.45s var(--ease-out); opacity: 0; }
+
+html.incoming-transition .page-transition { visibility: visible; opacity: 1; }
+html.incoming-transition .page-transition-text { clip-path: inset(0 0% 0 0); }
+
+.page-transition-text {
+  position: relative;
+  display: inline-block;
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  color: var(--forest);
+  clip-path: inset(0 100% 0 0);
+}
+[data-theme="dark"] .page-transition-text { color: var(--amber); }
+
+.page-transition.is-writing .page-transition-text {
+  animation: pt-write 0.65s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes pt-write {
+  to { clip-path: inset(0 0% 0 0); }
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.32s;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+.pt-pen {
+  position: absolute;
+  top: 0.1em;
+  left: 0;
+  width: 0.35em;
+  height: 0.35em;
+  border-radius: 50%;
+  background: var(--amber);
+  opacity: 0;
+}
+.page-transition.is-writing .pt-pen {
+  animation: pt-pen-move 0.65s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes pt-pen-move {
+  0% { left: 0; opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
-  }
+  .page-transition { display: none !important; }
 }
 
 /* ---------------------------------------------------------

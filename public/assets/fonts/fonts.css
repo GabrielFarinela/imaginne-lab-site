@@ -21,3 +21,11 @@
   font-display: swap;
   src: url('dmmono-500.woff2') format('woff2');
 }
+
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('caveat-variable.woff2') format('woff2');
+}
