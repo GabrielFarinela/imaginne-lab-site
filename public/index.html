@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script>(function(){var s=localStorage.getItem('imaginne-theme');document.documentElement.setAttribute('data-theme',s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));})();</script>
-<script>(function(){if(sessionStorage.getItem('imaginne-transition')==='out'&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('incoming-transition');}})();</script>
+<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches){return;}if(sessionStorage.getItem('imaginne-transition')==='out'){document.documentElement.classList.add('incoming-transition');}else if(!sessionStorage.getItem('imaginne-intro-shown')){document.documentElement.classList.add('pending-intro');}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Imaginne Lab · 3D Printing Studio</title>
 <meta name="description" content="Miniatures, organization, and personalized gifts, 3D printed to order by Imaginne Lab.">

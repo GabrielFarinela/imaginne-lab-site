@@ -23,9 +23,9 @@
 }
 
 @font-face {
-  font-family: 'Caveat';
+  font-family: 'Dancing Script';
   font-style: normal;
-  font-weight: 500 700;
+  font-weight: 400 700;
   font-display: swap;
-  src: url('caveat-variable.woff2') format('woff2');
+  src: url('dancing-script-variable.woff2') format('woff2');
 }
