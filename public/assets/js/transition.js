@@ -26,7 +26,7 @@
       e.preventDefault();
       overlay.classList.add('is-visible', 'is-writing');
       sessionStorage.setItem(KEY, 'out');
-      setTimeout(() => { window.location.href = href; }, 750);
+      setTimeout(() => { window.location.href = href; }, 4150);
     });
   });
 })();

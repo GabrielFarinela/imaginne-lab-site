@@ -29,13 +29,15 @@ html.incoming-transition .page-transition-text { clip-path: inset(0 0% 0 0); }
   font-family: 'Caveat', cursive;
   font-weight: 700;
   font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 1.4;
+  padding-block: 0.15em;
   color: var(--forest);
   clip-path: inset(0 100% 0 0);
 }
 [data-theme="dark"] .page-transition-text { color: var(--amber); }
 
 .page-transition.is-writing .page-transition-text {
-  animation: pt-write 0.65s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: pt-write 4s linear forwards;
 }
 @keyframes pt-write {
   to { clip-path: inset(0 0% 0 0); }
@@ -43,7 +45,7 @@ html.incoming-transition .page-transition-text { clip-path: inset(0 0% 0 0); }
 
 .pt-pen {
   position: absolute;
-  top: 0.1em;
+  top: 0.25em;
   left: 0;
   width: 0.35em;
   height: 0.35em;
@@ -52,11 +54,11 @@ html.incoming-transition .page-transition-text { clip-path: inset(0 0% 0 0); }
   opacity: 0;
 }
 .page-transition.is-writing .pt-pen {
-  animation: pt-pen-move 0.65s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: pt-pen-move 4s linear forwards;
 }
 @keyframes pt-pen-move {
   0% { left: 0; opacity: 1; }
-  92% { opacity: 1; }
+  97% { opacity: 1; }
   100% { left: 100%; opacity: 0; }
 }
 
