@@ -366,19 +366,33 @@ p.lede {
   overflow: visible;
 }
 .hero-visual .frame {
-  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
-  overflow: hidden;
   aspect-ratio: 4 / 5;
-  box-shadow: 0 30px 60px -30px rgba(var(--shadow-color), 0.35);
   position: relative;
   margin-left: clamp(0px, 6vw, 4rem);
 }
-.hero-visual .frame img { width: 100%; height: 100%; object-fit: cover; }
-.hero-visual .frame model-viewer {
+.hero-visual .frame img {
   width: 100%;
   height: 100%;
-  background: var(--bg-sunken);
-  --poster-color: var(--bg-sunken);
+  object-fit: cover;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  box-shadow: 0 30px 60px -30px rgba(var(--shadow-color), 0.35);
+}
+.hero-visual .frame::before {
+  content: "";
+  position: absolute;
+  inset: 4%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--bg-sunken) 0%, transparent 72%);
+  z-index: 1;
+}
+.hero-visual .frame model-viewer {
+  position: absolute;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  z-index: 2;
+  background: transparent;
+  --poster-color: transparent;
 }
 
 .hero-badge {
