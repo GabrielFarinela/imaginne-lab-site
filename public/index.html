@@ -125,7 +125,24 @@
 
       <div class="hero-visual" data-reveal>
         <div class="frame">
-          <img src="/assets/img/hero-vase.jpg" alt="3D printed vase with a flower arrangement, made by Imaginne Lab" loading="eager">
+          <model-viewer
+            src="/assets/3d/hero-bust.glb"
+            alt="Interactive 3D printed bust, made by Imaginne Lab"
+            camera-controls
+            disable-pan
+            interaction-prompt="none"
+            auto-rotate
+            auto-rotate-delay="1500"
+            rotation-per-second="18deg"
+            shadow-intensity="1"
+            exposure="1"
+            environment-image="neutral"
+            camera-orbit="15deg 80deg 105%"
+            min-camera-orbit="auto 55deg auto"
+            max-camera-orbit="auto 105deg auto"
+            loading="eager"
+            reveal="auto">
+          </model-viewer>
         </div>
         <div class="hero-badge">
           <svg class="icon" viewBox="0 0 256 256"><path fill="currentColor" d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.34,44L128,120,47.66,76ZM40,90l80,43.78v85.79L40,175.82Zm96,129.57V133.82L216,90v85.78Z"/></svg>
@@ -346,6 +363,7 @@
   </div>
 </footer>
 
+<script type="module" src="/assets/js/model-viewer.min.js"></script>
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/transition.js"></script>
 </body>

@@ -374,6 +374,12 @@ p.lede {
   margin-left: clamp(0px, 6vw, 4rem);
 }
 .hero-visual .frame img { width: 100%; height: 100%; object-fit: cover; }
+.hero-visual .frame model-viewer {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-sunken);
+  --poster-color: var(--bg-sunken);
+}
 
 .hero-badge {
   position: absolute;
