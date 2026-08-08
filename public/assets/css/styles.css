@@ -161,6 +161,7 @@ h1, h2, h3, h4, p { margin: 0; }
   flex-shrink: 0;
 }
 
+h1.heading,
 h2.heading {
   font-size: clamp(2rem, 3.4vw, 2.9rem);
   font-weight: 600;
@@ -728,3 +729,35 @@ p.lede {
 @media (prefers-reduced-motion: reduce) {
   [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---------------------------------------------------------
+   404 page
+--------------------------------------------------------- */
+.error-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.error-page .wrap {
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.error-page .error-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--bg-sunken);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+.error-page .error-icon .icon { width: 30px; height: 30px; color: var(--forest); }
+[data-theme="dark"] .error-page .error-icon .icon { color: var(--amber); }
+.error-page .eyebrow { justify-content: center; margin-bottom: 1rem; }
+.error-page .heading { margin-bottom: 1rem; }
+.error-page .lede { margin-inline: auto; margin-bottom: 2rem; }
