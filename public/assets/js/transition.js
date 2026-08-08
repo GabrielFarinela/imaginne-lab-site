@@ -20,6 +20,7 @@
     });
     setTimeout(() => overlay.classList.remove('is-visible', 'is-fading'), 500);
   } else if (document.documentElement.classList.contains('pending-intro')) {
+    localStorage.setItem('imaginne-intro-seen', '1');
     requestAnimationFrame(() => {
       overlay.classList.add('is-visible', 'is-writing');
     });

@@ -734,7 +734,7 @@ p.lede {
    404 page
 --------------------------------------------------------- */
 .error-page {
-  min-height: 70vh;
+  min-height: calc(100vh - 76px);
   display: flex;
   align-items: center;
   justify-content: center;
