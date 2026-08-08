@@ -394,6 +394,9 @@ p.lede {
   background: transparent;
   --poster-color: transparent;
 }
+.hero-visual .frame model-viewer:focus:not(:focus-visible) {
+  outline: none;
+}
 
 .hero-badge {
   position: absolute;
