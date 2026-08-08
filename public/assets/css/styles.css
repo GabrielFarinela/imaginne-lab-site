@@ -395,6 +395,7 @@ p.lede {
   z-index: 2;
   background: transparent;
   --poster-color: transparent;
+  --progress-bar-height: 0px;
 }
 .hero-visual .frame model-viewer:focus:not(:focus-visible) {
   outline: none;
