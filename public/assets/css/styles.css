@@ -387,9 +387,9 @@ p.lede {
 }
 .hero-visual .frame model-viewer {
   position: absolute;
-  inset: -12%;
-  width: 124%;
-  height: 124%;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
   z-index: 2;
   background: transparent;
   --poster-color: transparent;
@@ -419,6 +419,7 @@ p.lede {
 
 @media (max-width: 900px) {
   .hero .wrap { grid-template-columns: 1fr; }
+  .hero-visual { margin-top: 1.5rem; }
   .hero-visual .frame { margin-left: 0; max-width: 420px; margin-inline: auto; }
   .hero-badge { left: 0.75rem; }
 }
