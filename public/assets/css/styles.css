@@ -387,9 +387,10 @@ p.lede {
 }
 .hero-visual .frame model-viewer {
   position: absolute;
-  inset: -4%;
+  top: -4%;
+  left: -4%;
   width: 108%;
-  height: 108%;
+  height: 120%;
   z-index: 2;
   background: transparent;
   --poster-color: transparent;
