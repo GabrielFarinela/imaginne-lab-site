@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dashboard admin · Imaginne Lab</title>
+  <link rel="icon" href="/assets/img/logo-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('imaginne-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));</script>
+</head>
+<body>
+  <header class="nav"><div class="wrap">
+    <a class="brand" data-home href="/"><img src="/assets/img/logo-icon.svg" alt="Imaginne Lab"><span>Imaginne Lab<small>Dashboard admin</small></span></a>
+    <a class="btn btn-ghost btn-sm" data-home data-back href="/">Home</a>
+  </div></header>
+  <main class="wrap admin-main">
+    <p id="admin-status" role="status" aria-live="polite"></p>
+    <section id="admin-content" hidden aria-labelledby="admin-title">
+      <p class="eyebrow">Imaginne Lab</p>
+      <h1 id="admin-title" class="heading">Dashboard admin</h1>
+      <p id="admin-welcome" class="lede"></p>
+      <div class="admin-grid">
+        <article class="admin-card"><h2 id="profile-heading"></h2><p id="admin-name"></p><p id="admin-email"></p></article>
+        <article class="admin-card"><h2 id="access-heading"></h2><p id="admin-role"></p></article>
+      </div>
+      <p id="admin-empty" class="lede"></p>
+    </section>
+  </main>
+  <script src="/assets/js/auth-config.js"></script>
+  <script type="module" src="/assets/js/admin.js"></script>
+</body>
+</html>

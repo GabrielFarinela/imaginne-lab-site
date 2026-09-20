@@ -3,6 +3,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const adminDashboard = require('../server/admin-dashboard.cjs');
 
 const root = path.join(__dirname, '..', 'public');
 const port = Number(process.argv[2] || 3000);
@@ -23,6 +24,10 @@ const types = {
 
 http
   .createServer((req, res) => {
+    if (req.url.split('?')[0].replace(/\/$/, '') === '/api/admin-dashboard') {
+      adminDashboard(req, res);
+      return;
+    }
     let reqPath = decodeURIComponent(req.url.split('?')[0]);
     if (reqPath.endsWith('/')) reqPath += 'index.html';
     const filePath = path.join(root, reqPath);

@@ -47,6 +47,45 @@ Serves `public/` at http://localhost:3000.
   `pt/index.html` and `es/index.html` can reference the same
   `public/assets/` folder without adjustment.
 
+## Authentication setup
+
+The shared login/registration dialog is loaded on all three homepages.
+Set `url` and `publishableKey` in `public/assets/js/auth-config.js` to the
+Supabase project URL and public publishable (or legacy anon) key. Never put
+a service role or secret key in public files. The browser loads the pinned
+Supabase JS SDK from esm.sh; network access to that host is required.
+
+Enable email/password authentication in Supabase. Configure the Site URL
+and allow the `/`, `/pt/`, and `/es/` confirmation redirect URLs for production
+and local development. Test both email-confirmation and immediate-session flows.
+
+Registration sends the name as `options.data.name` (`raw_user_meta_data->>'name'`
+in SQL). The existing database trigger must read that key to populate
+`public.users`. No trigger or table schema is present in this repository, so
+automatic profile creation must be verified against the deployed database.
+Password confirmation stays in the browser and is never submitted.
+
+Manual checks: open and switch forms in each locale; test mismatched passwords,
+invalid credentials, email confirmation, reload/session persistence, sign out,
+keyboard Tab/Esc, close button, and mobile/light/dark layouts.
+
+Account profiles read `public.users(id, full_name, is_admin)`, where `id` matches
+the Auth user ID. Allow authenticated users to SELECT their own row through RLS.
+Keep `is_admin` protected from user INSERT/UPDATE (including through signup
+metadata or a profile-edit policy). Only a trusted backend/database operator
+should grant admin rights. The UI never trusts user metadata for admin status.
+The `/admin/` page is a public shell with no protected data. It requests the
+dashboard through `/api/admin-dashboard`, which verifies the bearer token with
+Supabase Auth and checks `users.is_admin === true` on the server for every request.
+Missing/invalid sessions return 401; non-admins return 403. The browser redirects
+these visitors to the homepage, including when opening the URL directly.
+The local server and Vercel Function share `server/admin-dashboard.cjs`.
+Restart the local server after changing its code. Node.js 20+ is required.
+Production can override the public project defaults with `SUPABASE_URL` and
+`SUPABASE_PUBLISHABLE_KEY`. Do not cache these API responses. Future admin
+endpoints must enforce the same authorization before accessing protected data.
+No database policies were changed here; protecting writes to `is_admin` is required.
+
 ## Deployment
 
 Connected to Vercel via GitHub: pushing to `main` deploys automatically.
