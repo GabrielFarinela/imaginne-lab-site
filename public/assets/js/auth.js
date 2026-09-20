@@ -6,6 +6,7 @@
       invitation: 'Não tem uma conta?', register: 'Cadastre-se', back: 'Já tenho uma conta',
       wait: 'Aguarde…', logout: 'Sair', mismatch: 'As senhas não coincidem.',
       nameRequired: 'Informe seu nome.', hint: 'Use pelo menos 8 caracteres.',
+      accountCreated: 'Conta criada com sucesso! Entre com seu e-mail e senha.',
       profileError: 'Não foi possível consultar as permissões da sua conta. Feche e abra este popup para tentar novamente.',
       checkEmail: 'Se o cadastro puder ser concluído, você receberá um e-mail de confirmação. Confira sua caixa de entrada.',
       unavailable: 'O acesso à conta está temporariamente indisponível. Tente novamente mais tarde.',
@@ -13,6 +14,7 @@
       credentials: 'E-mail ou senha incorretos.', unconfirmed: 'Confirme seu e-mail antes de entrar.',
       weak: 'A senha não atende aos requisitos de segurança. Use uma senha mais forte.',
       rate: 'Muitas tentativas. Aguarde alguns minutos e tente novamente.',
+      emailRate: 'O limite temporário de envio de e-mails foi atingido. Aguarde a liberação do serviço antes de tentar cadastrar novamente.',
     },
     en: {
       login: 'Sign in', signup: 'Create account', account: 'My account', close: 'Close',
@@ -20,6 +22,7 @@
       invitation: 'Don’t have an account?', register: 'Sign up', back: 'I already have an account',
       wait: 'Please wait…', logout: 'Sign out', mismatch: 'Passwords do not match.',
       nameRequired: 'Enter your name.', hint: 'Use at least 8 characters.',
+      accountCreated: 'Account created successfully! Sign in with your email and password.',
       profileError: 'Unable to check your account permissions. Close and reopen this popup to try again.',
       checkEmail: 'If registration can be completed, you will receive a confirmation email. Check your inbox.',
       unavailable: 'Account access is temporarily unavailable. Please try again later.',
@@ -27,6 +30,7 @@
       credentials: 'Incorrect email or password.', unconfirmed: 'Confirm your email before signing in.',
       weak: 'This password does not meet the security requirements. Use a stronger password.',
       rate: 'Too many attempts. Wait a few minutes and try again.',
+      emailRate: 'The temporary email sending limit has been reached. Wait for the service limit to reset before trying to sign up again.',
     },
     es: {
       login: 'Entrar', signup: 'Crear cuenta', account: 'Mi cuenta', close: 'Cerrar',
@@ -34,6 +38,7 @@
       invitation: '¿No tienes una cuenta?', register: 'Regístrate', back: 'Ya tengo una cuenta',
       wait: 'Espera…', logout: 'Cerrar sesión', mismatch: 'Las contraseñas no coinciden.',
       nameRequired: 'Introduce tu nombre.', hint: 'Usa al menos 8 caracteres.',
+      accountCreated: '¡Cuenta creada correctamente! Inicia sesión con tu correo y contraseña.',
       profileError: 'No se pudieron consultar los permisos de tu cuenta. Cierra y vuelve a abrir esta ventana para intentarlo de nuevo.',
       checkEmail: 'Si se puede completar el registro, recibirás un correo de confirmación. Revisa tu bandeja de entrada.',
       unavailable: 'El acceso a la cuenta no está disponible temporalmente. Inténtalo más tarde.',
@@ -41,6 +46,7 @@
       credentials: 'Correo o contraseña incorrectos.', unconfirmed: 'Confirma tu correo antes de entrar.',
       weak: 'La contraseña no cumple los requisitos de seguridad. Usa una más segura.',
       rate: 'Demasiados intentos. Espera unos minutos e inténtalo de nuevo.',
+      emailRate: 'Se ha alcanzado el límite temporal de envío de correos. Espera a que se restablezca antes de intentar registrarte de nuevo.',
     },
   };
   const t = translations[document.documentElement.lang.split('-')[0]] || translations.en;
@@ -150,6 +156,8 @@
         const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2.57.4');
         const client = createClient(config.url, config.publishableKey);
         client.auth.onAuthStateChange((_event, next) => {
+          // Registration must finish at the login form, even with email confirmation disabled.
+          if (busy && mode === 'signup' && next) return;
           session = next;
           profile = null;
           profileFailed = false;
@@ -188,7 +196,7 @@
   function showError(error) {
     const codes = {
       invalid_credentials: t.credentials, email_not_confirmed: t.unconfirmed,
-      weak_password: t.weak, over_request_rate_limit: t.rate, over_email_send_rate_limit: t.rate,
+      weak_password: t.weak, over_request_rate_limit: t.rate, over_email_send_rate_limit: t.emailRate,
     };
     status(codes[error.code] || (error.message === 'unavailable' || error instanceof TypeError ? t.unavailable : t.generic), true);
   }
@@ -247,14 +255,23 @@
         ? await client.auth.signUp({ email, password, options: { data: { name }, emailRedirectTo: location.origin + location.pathname } })
         : await client.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      session = data.session;
-      form.reset();
-      if (session) dialog.close();
-      else if (registration) {
+      if (registration) {
+        if (data.session) {
+          const { error: signOutError } = await client.auth.signOut({ scope: 'local' });
+          if (signOutError) throw signOutError;
+        }
+        session = null;
+        profile = null;
+        ++profileVersion;
+        form.reset();
         mode = 'login';
         fields.namedItem('email').value = email;
         render();
-        showToast(t.checkEmail);
+        showToast(data.session ? t.accountCreated : t.checkEmail);
+      } else {
+        session = data.session;
+        form.reset();
+        if (session) dialog.close();
       }
     } catch (error) { showError(error); }
     finally {
