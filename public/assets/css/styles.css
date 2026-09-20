@@ -21,8 +21,8 @@
 .auth-close:hover { background: var(--bg-sunken); }
 .auth-form fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 1rem; min-width: 0; }
 .auth-form.is-registration button[type="submit"] { margin-top: 1rem; }
-.auth-toast { margin: 0 auto 1.5rem; width: 100%; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--bg-sunken); box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
-.auth-toast button { position: relative; display: flex; align-items: center; width: 100%; padding: 1rem 2.5rem; border: 0; border-radius: inherit; background: transparent; color: var(--ink); font: inherit; text-align: center; }
+.auth-toast { margin: 0 auto 1.5rem; width: 100%; border: 1px solid #a7d7b5; border-radius: var(--radius-sm); background: #e3f5e9; color: #205b36; box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
+.auth-toast button { position: relative; display: flex; align-items: center; width: 100%; padding: 1rem 2.5rem; border: 0; border-radius: inherit; background: transparent; color: inherit; font: inherit; text-align: center; }
 .auth-toast button > span:first-child { flex: 1; }
 .auth-toast button > span:last-child { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); font-size: 1.25rem; line-height: 1.2; }
 .auth-form label { display: grid; gap: .4rem; font-weight: 500; }
