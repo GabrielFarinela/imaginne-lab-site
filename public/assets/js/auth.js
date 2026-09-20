@@ -7,6 +7,10 @@
       wait: 'Aguarde…', logout: 'Sair', mismatch: 'As senhas não coincidem.',
       nameRequired: 'Informe seu nome.', hint: 'Use pelo menos 8 caracteres.',
       accountCreated: 'Conta criada com sucesso! Entre com seu e-mail e senha.',
+      exists: 'Este e-mail já está cadastrado. Clique em “Já tenho uma conta” para entrar.',
+      signupDisabled: 'O cadastro de novas contas está temporariamente desativado.',
+      invalidEmail: 'Informe um endereço de e-mail válido.',
+      serverError: 'O serviço não conseguiu concluir o cadastro. Tente novamente mais tarde.',
       profileError: 'Não foi possível consultar as permissões da sua conta. Feche e abra este popup para tentar novamente.',
       checkEmail: 'Se o cadastro puder ser concluído, você receberá um e-mail de confirmação. Confira sua caixa de entrada.',
       unavailable: 'O acesso à conta está temporariamente indisponível. Tente novamente mais tarde.',
@@ -23,6 +27,10 @@
       wait: 'Please wait…', logout: 'Sign out', mismatch: 'Passwords do not match.',
       nameRequired: 'Enter your name.', hint: 'Use at least 8 characters.',
       accountCreated: 'Account created successfully! Sign in with your email and password.',
+      exists: 'This email is already registered. Click “I already have an account” to sign in.',
+      signupDisabled: 'New account registration is temporarily disabled.',
+      invalidEmail: 'Enter a valid email address.',
+      serverError: 'The service could not complete registration. Please try again later.',
       profileError: 'Unable to check your account permissions. Close and reopen this popup to try again.',
       checkEmail: 'If registration can be completed, you will receive a confirmation email. Check your inbox.',
       unavailable: 'Account access is temporarily unavailable. Please try again later.',
@@ -39,6 +47,10 @@
       wait: 'Espera…', logout: 'Cerrar sesión', mismatch: 'Las contraseñas no coinciden.',
       nameRequired: 'Introduce tu nombre.', hint: 'Usa al menos 8 caracteres.',
       accountCreated: '¡Cuenta creada correctamente! Inicia sesión con tu correo y contraseña.',
+      exists: 'Este correo ya está registrado. Haz clic en “Ya tengo una cuenta” para entrar.',
+      signupDisabled: 'El registro de nuevas cuentas está desactivado temporalmente.',
+      invalidEmail: 'Introduce una dirección de correo válida.',
+      serverError: 'El servicio no pudo completar el registro. Inténtalo más tarde.',
       profileError: 'No se pudieron consultar los permisos de tu cuenta. Cierra y vuelve a abrir esta ventana para intentarlo de nuevo.',
       checkEmail: 'Si se puede completar el registro, recibirás un correo de confirmación. Revisa tu bandeja de entrada.',
       unavailable: 'El acceso a la cuenta no está disponible temporalmente. Inténtalo más tarde.',
@@ -93,7 +105,7 @@
     toast.hidden = false;
     toast.querySelector('span').textContent = text;
     toast.querySelector('button').setAttribute('aria-label', `${text} — ${t.close}`);
-    toastTimer = setTimeout(dismissToast, 10000);
+    toastTimer = setTimeout(dismissToast, 5000);
   }
   toast.querySelector('button').addEventListener('click', dismissToast);
   let mode = 'login';
@@ -197,6 +209,9 @@
     const codes = {
       invalid_credentials: t.credentials, email_not_confirmed: t.unconfirmed,
       weak_password: t.weak, over_request_rate_limit: t.rate, over_email_send_rate_limit: t.emailRate,
+      user_already_exists: t.exists, email_exists: t.exists,
+      signup_disabled: t.signupDisabled, email_address_invalid: t.invalidEmail,
+      unexpected_failure: t.serverError,
     };
     status(codes[error.code] || (error.message === 'unavailable' || error instanceof TypeError ? t.unavailable : t.generic), true);
   }
